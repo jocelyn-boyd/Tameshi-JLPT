@@ -8,14 +8,6 @@
 
 import Foundation
 
-struct Instruction {
-  
-  let JPNInstruction: String
-  let ENGInstruction: String
-  
-  static let mondaiOne = Instruction(JPNInstruction: "____の　ことばは　ひらがなで　どう　かきます。いちばん　いい　ものを　ひとつ　えらんで　ください。", ENGInstruction: "How do you write the underlined word in hiragana? Please choose one answer.")
-}
-
 struct N5VocabKanjiReading {
   
   let question: String
@@ -31,9 +23,9 @@ struct N5VocabKanjiReading {
     case incorrect
   }
   
-//  static func shuffleQuestions() -> [N5VocabKanjiReading] {
-//    return vocabSectionOne
-//  }
+  static func shuffleQuestions() -> [N5VocabKanjiReading] {
+    return vocabSectionOne
+  }
   
   static let vocabSectionOne =
     [N5VocabKanjiReading(question: "先週　デパートに　かいものに　いきました。", possibleAnswers: [Answer(text: "せんしゅう", option: .correct), Answer(text: "ぜんしゅ", option: .incorrect), Answer(text: "せんしゅ", option: .incorrect), Answer(text: "ぜんしゅう", option: .incorrect)]),
