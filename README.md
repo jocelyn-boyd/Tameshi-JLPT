@@ -15,8 +15,8 @@ The main feature of the app is to simulate a genuine test-taking experience. The
 - N5 Vocabulary Section, Section 1 out 4 
 - keep track of best scores and recent scores
 
-## Screenshot
-- ![image](images/mondaiOne.png)
+## Screenshots (more coming soon!)
+![image](images/mondaiOne.png)
 
 ## Programming Languages
 - Swift
