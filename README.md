@@ -11,12 +11,6 @@ There is an official practice book available in print in the US but it is sold a
 ## The Goal of this Project
 The main feature of the app is to simulate a genuine test-taking experience. The user should able to practice questions to become familiar with the formatting of the test, as well as, a general self-assessment of their skills to pinpoint any areas they’d like to strengthen. The user should also be given instant feedback without relying on outside translation tools.
 
-## Programming Languages
-- Swift
-
-## Development Tools
-- XCode
-
 ## WIP Features 
 - N5 Vocabulary Section, Section 1 out 4 
 - keep track of best scores and recent scores
