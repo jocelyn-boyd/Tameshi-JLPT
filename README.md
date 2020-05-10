@@ -16,7 +16,7 @@ The main feature of the app is to simulate a genuine test-taking experience. The
 - keep track of best scores and recent scores
 
 ## Screenshot
-- coming soon
+- ![image](images/mondaiOne.png)
 
 ## Programming Languages
 - Swift
