@@ -86,10 +86,11 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
         guard let cell = KanjiReadingTableView.dequeueReusableCell(withIdentifier: "KanjiReading", for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
         
         //MARK: Do I still need this function?
-        let questions = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
-        let shuffle = questions.possibleAnswers.shuffled()
+        let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
+        let shuffle = item.possibleAnswers.shuffled()
         
-        cell.questionLabel.text = questions.question
+        cell.questionLabel.text = item.question
+        
         cell.optionOneButton.setTitle(shuffle[0].text, for: .normal)
         cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
         cell.optionThreeButton.setTitle(shuffle[2].text, for: .normal)
