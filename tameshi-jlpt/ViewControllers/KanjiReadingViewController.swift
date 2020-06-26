@@ -89,7 +89,13 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
         let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
         let shuffle = item.possibleAnswers.shuffled()
         
-        cell.questionLabel.text = item.question
+        let questionText = item.question
+        let attributedQuesText = NSMutableAttributedString(string: questionText)
+        let attributes: [NSAttributedString.Key: Any] = [.backgroundColor: UIColor.green]
+        
+        
+        attributedQuesText.addAttributes(attributes, range: item.rangeOfHighlightedKanji)
+        cell.questionLabel.attributedText = attributedQuesText
         
         cell.optionOneButton.setTitle(shuffle[0].text, for: .normal)
         cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
