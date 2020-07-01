@@ -8,15 +8,11 @@
 
 import UIKit
 
-//MARK: TODO: Import Snapkit
-//MARK: Diffable Data Source for TableView
-//MARK: Make a switch/button to see hints in TableView ??
-
 class KanjiReadingViewController: UIViewController {
   
   var instructions = Instructions.howTo
   var testItems = N5VocabKanjiReading.vocabSectionOne
-    
+  
   lazy var mylabel: UILabel = {
     let label = UILabel()
     label.text = "問題 １" //"Mondai 1"
@@ -69,65 +65,74 @@ class KanjiReadingViewController: UIViewController {
 }
 
 extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return testItems.count + 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      if indexPath.row == 0 {
-        let cell = UITableViewCell()
-        let test = instructions.JPNInstructions
-        cell.textLabel?.text = test
-        cell.textLabel?.numberOfLines = 3
-        cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
-        cell.isHighlighted = false
-        return cell
-      } else {
-        guard let cell = KanjiReadingTableView.dequeueReusableCell(withIdentifier: "KanjiReading", for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
-        
-        //MARK: Do I still need this function?
-        let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
-        let shuffle = item.possibleAnswers.shuffled()
-        
-        let questionText = item.question
-        let attributedQuesText = NSMutableAttributedString(string: questionText)
-        let attributes: [NSAttributedString.Key: Any] = [.backgroundColor: UIColor.green]
-        
-        
-        attributedQuesText.addAttributes(attributes, range: item.rangeOfHighlightedKanji)
-        cell.questionLabel.attributedText = attributedQuesText
-        
-        cell.optionOneButton.setTitle(shuffle[0].text, for: .normal)
-        cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
-        cell.optionThreeButton.setTitle(shuffle[2].text, for: .normal)
-        cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
-        
-        
-        cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
-           return cell
-      }
-      }
-      
-      
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-      //sticky header
-      if scrollView.contentOffset.y < 0.0 {
-        if let cell = KanjiReadingTableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
-          cell.frame.origin.y = scrollView.contentOffset.y
-          let originalHeight:CGFloat = 125.0
-          cell.frame.size.height = originalHeight + scrollView.contentOffset.y * (-1.0)
-  //        print(cell.frame.size.height)
-        }
-      }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      if indexPath.row == 0 {
-        return 125.0
-      } else {
-        return 200.0
-      }
-    }
-
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return testItems.count + 1
   }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if indexPath.row == 0 {
+      let cell = UITableViewCell()
+      let test = instructions.JPNInstructions
+      cell.textLabel?.text = test
+      cell.textLabel?.numberOfLines = 3
+      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+      cell.isHighlighted = false
+      return cell
+    } else {
+      guard let cell = KanjiReadingTableView.dequeueReusableCell(withIdentifier: "KanjiReading", for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
+      
+      let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
+      let shuffle = item.possibleAnswers.shuffled()
+      
+      let questionText = item.question
+      let font = UIFont.boldSystemFont(ofSize: 17)
+      let attributedQuesText = NSMutableAttributedString(string: questionText)
+      let attributes: [NSAttributedString.Key: Any] = [.backgroundColor: UIColor.yellow, .font: font]
+      
+      
+      attributedQuesText.addAttributes(attributes, range: item.rangeOfHighlightedKanji)
+      cell.questionLabel.attributedText = attributedQuesText
+      cell.delegate = self
+      
+      cell.optionOneButton.setTitle(shuffle[0].text, for: .normal)
+      cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
+      cell.optionThreeButton.setTitle(shuffle[2].text, for: .normal)
+      cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
+      
+      
+      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+      return cell
+    }
+  }
+  
+  
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //sticky header
+    if scrollView.contentOffset.y < 0.0 {
+      if let cell = KanjiReadingTableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+        cell.frame.origin.y = scrollView.contentOffset.y
+        let originalHeight:CGFloat = 125.0
+        cell.frame.size.height = originalHeight + scrollView.contentOffset.y * (-1.0)
+        //        print(cell.frame.size.height)
+      }
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if indexPath.row == 0 {
+      return 125.0
+    } else {
+      return 200.0
+    }
+  }
+  
+}
+
+extension KanjiReadingViewController: KanjiReadingCellDelegate {
+  func didPushButton(at index: Int, for cellIndex: Int) {
+    testItems[cellIndex].selectedAnswer = testItems[cellIndex].possibleAnswers[index]
+  }
+  
+  
+}

@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol KanjiReadingCellDelegate: class {
+  func didPushButton(at index: Int, for cellIndex: Int)
+}
+
 class KanjiReadingCell: UITableViewCell {
+  
+  weak var delegate: KanjiReadingCellDelegate?
+  var index: Int!
   
   lazy var questionLabel: UILabel = {
     let label = UILabel()
@@ -27,6 +34,8 @@ class KanjiReadingCell: UITableViewCell {
     button.layer.cornerRadius = 5
     button.layer.borderColor = UIColor.black.cgColor
     button.layer.borderWidth = 2
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    button.tag = 0
     return button
   }()
   
@@ -37,6 +46,8 @@ class KanjiReadingCell: UITableViewCell {
     button.layer.cornerRadius = 5
     button.layer.borderColor = UIColor.black.cgColor
     button.layer.borderWidth = 2
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    button.tag = 1
     return button
   }()
   
@@ -47,6 +58,8 @@ class KanjiReadingCell: UITableViewCell {
     button.layer.cornerRadius = 5
     button.layer.borderColor = UIColor.black.cgColor
     button.layer.borderWidth = 2
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    button.tag = 2
     return button
   }()
   
@@ -57,9 +70,15 @@ class KanjiReadingCell: UITableViewCell {
     button.layer.cornerRadius = 5
     button.layer.borderColor = UIColor.black.cgColor
     button.layer.borderWidth = 2
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    button.tag = 3
     return button
   }()
   
+  
+ @objc func handleButtonTap(_ sender: UIButton) {
+  delegate?.didPushButton(at: sender.tag, for: index)
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()

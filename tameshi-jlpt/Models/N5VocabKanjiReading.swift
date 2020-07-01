@@ -13,6 +13,7 @@ struct N5VocabKanjiReading {
   let highlightedKanji: String
   let question: String
   let possibleAnswers: [Answer]
+  var selectedAnswer: Answer?
   
   struct Answer {
     let text: String
