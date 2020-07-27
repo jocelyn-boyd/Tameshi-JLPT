@@ -8,12 +8,8 @@
 
 import Foundation
 
-struct Instructions {
-  
-  let JPNInstructions: String
-  let ENGInstructions: String
-  
-  static let howTo = Instructions(
-  JPNInstructions: "____の　ことばは　ひらがなで　どう　かきます。いちばん　いい　ものを　ひとつ　えらんで　ください。",
-  ENGInstructions: "How are the underlined words written in hiragana? Please choose the best one.")
+enum Instruction: String {
+    case jPNInstructions = "____の　ことばは　ひらがなで　どう　かきます。いちばん　いい　ものを　ひとつ　えらんで　ください。"
+    
+    case eNGInstructions = "How are the underlined words written in hiragana? Please choose the best one."
 }

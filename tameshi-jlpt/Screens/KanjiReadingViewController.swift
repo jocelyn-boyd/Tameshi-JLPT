@@ -10,7 +10,6 @@ import UIKit
 
 class KanjiReadingViewController: UIViewController {
   
-  var instructions = Instructions.howTo
   var testItems = N5VocabKanjiReading.vocabSectionOne
   
   lazy var mylabel: UILabel = {
@@ -24,7 +23,7 @@ class KanjiReadingViewController: UIViewController {
   
   lazy var KanjiReadingTableView: UITableView = {
     let table = UITableView()
-    //      table.separatorColor = .clear
+//    table.separatorColor = .clear
     table.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
     table.allowsSelection = false
     table.register(KanjiReadingCell.self, forCellReuseIdentifier: "KanjiReading")
@@ -33,7 +32,8 @@ class KanjiReadingViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+//    view.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+    view.backgroundColor = UIColor.white
     KanjiReadingTableView.delegate = self
     KanjiReadingTableView.dataSource = self
     constrainMyLabel()
@@ -72,10 +72,11 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row == 0 {
       let cell = UITableViewCell()
-      let test = instructions.JPNInstructions
+      let test = Instruction.jPNInstructions.rawValue
       cell.textLabel?.text = test
       cell.textLabel?.numberOfLines = 3
-      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+//      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+      cell.backgroundColor = UIColor.white
       cell.isHighlighted = false
       return cell
     } else {
@@ -85,10 +86,10 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       let shuffle = item.possibleAnswers.shuffled()
       
       let questionText = item.question
-      let font = UIFont.boldSystemFont(ofSize: 17)
+      let fontAttributes = UIFont.boldSystemFont(ofSize: 20)
+      let underlineAttributes = NSUnderlineStyle.single.rawValue
       let attributedQuesText = NSMutableAttributedString(string: questionText)
-      let attributes: [NSAttributedString.Key: Any] = [.backgroundColor: UIColor.yellow, .font: font]
-      
+      let attributes: [NSAttributedString.Key: Any] = [.font: fontAttributes, .underlineStyle: underlineAttributes]
       
       attributedQuesText.addAttributes(attributes, range: item.rangeOfHighlightedKanji)
       cell.questionLabel.attributedText = attributedQuesText
@@ -100,12 +101,15 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
       
       
-      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+//      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+      cell.backgroundColor = UIColor.white
       return cell
     }
   }
   
-  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+  }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     //sticky header
@@ -126,12 +130,13 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       return 200.0
     }
   }
-  
+    
 }
 
 extension KanjiReadingViewController: KanjiReadingCellDelegate {
-  func didPushButton(at index: Int, for cellIndex: Int) {
-    testItems[cellIndex].selectedAnswer = testItems[cellIndex].possibleAnswers[index]
+  func didPushButton(at index: Int) {
+    
+//    testItems.selectedAnswer = testItems[cellIndex].possibleAnswers[index]
   }
   
   

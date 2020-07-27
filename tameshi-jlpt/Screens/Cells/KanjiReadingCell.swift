@@ -17,6 +17,11 @@ class KanjiReadingCell: UITableViewCell {
   weak var delegate: KanjiReadingCellDelegate?
   var index: Int!
   
+  lazy var numberLabel: UILabel = {
+    let label = UILabel()
+    return label
+  }()
+  
   lazy var questionLabel: UILabel = {
     let label = UILabel()
     label.text = ""
@@ -92,12 +97,14 @@ class KanjiReadingCell: UITableViewCell {
   }
   
   func contrainElements() {
+    contentView.addSubview(numberLabel)
     contentView.addSubview(questionLabel)
     contentView.addSubview(optionOneButton)
     contentView.addSubview(optionTwoButton)
     contentView.addSubview(optionThreeButton)
     contentView.addSubview(optionFourButton)
     
+    numberLabel.translatesAutoresizingMaskIntoConstraints = false
     questionLabel.translatesAutoresizingMaskIntoConstraints = false
     optionOneButton.translatesAutoresizingMaskIntoConstraints = false
     optionTwoButton.translatesAutoresizingMaskIntoConstraints = false
