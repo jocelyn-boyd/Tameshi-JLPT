@@ -12,54 +12,58 @@ class KanjiReadingViewController: UIViewController {
   
   var testItems = N5VocabKanjiReading.vocabSectionOne
   
-  lazy var mylabel: UILabel = {
+  //MARK: - Properties
+  lazy var headerSectionLabel: UILabel = {
     let label = UILabel()
-    label.text = "問題 １" //"Mondai 1"
-    label.numberOfLines = 0
-    label.lineBreakMode = .byWordWrapping
+    label.text = "問題 １" // "Mondai 1"
+    Utilities.setHeaderLabel(label)
     return label
   }()
   
-  
-  lazy var KanjiReadingTableView: UITableView = {
+  lazy var kanjiReadingTableView: UITableView = {
     let table = UITableView()
-//    table.separatorColor = .clear
-    table.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
     table.allowsSelection = false
     table.register(KanjiReadingCell.self, forCellReuseIdentifier: "KanjiReading")
+    table.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
     return table
   }()
   
+  //MARK: - Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-//    view.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
-    view.backgroundColor = UIColor.white
-    KanjiReadingTableView.delegate = self
-    KanjiReadingTableView.dataSource = self
-    constrainMyLabel()
-    constrainMyTable()
-    KanjiReadingTableView.rowHeight = UITableView.automaticDimension
+    configureViewController()
+    setHeaderLabel()
+    setN5VocabTableView()
   }
   
-  func constrainMyLabel() {
-    view.addSubview(mylabel)
-    mylabel.translatesAutoresizingMaskIntoConstraints = false
+  //MARK: - Private Methods
+  private  func configureViewController() {
+    view.backgroundColor = UIColor.systemBackground
+    kanjiReadingTableView.delegate = self
+    kanjiReadingTableView.dataSource = self
+    
+    kanjiReadingTableView.rowHeight = UITableView.automaticDimension
+  }
+  
+  private func setHeaderLabel() {
+    view.addSubview(headerSectionLabel)
+    headerSectionLabel.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
-      mylabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      mylabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 25)])
+      headerSectionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      headerSectionLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 25)])
     
   }
   
-  func constrainMyTable() {
-    KanjiReadingTableView.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(KanjiReadingTableView)
+  private func setN5VocabTableView() {
+    view.addSubview(kanjiReadingTableView)
+    kanjiReadingTableView.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
-      KanjiReadingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-      KanjiReadingTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      KanjiReadingTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      KanjiReadingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+      kanjiReadingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+      kanjiReadingTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      kanjiReadingTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      kanjiReadingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
   }
   
 }
@@ -75,12 +79,12 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       let test = Instruction.jPNInstructions.rawValue
       cell.textLabel?.text = test
       cell.textLabel?.numberOfLines = 3
-//      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+      //      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
       cell.backgroundColor = UIColor.white
       cell.isHighlighted = false
       return cell
     } else {
-      guard let cell = KanjiReadingTableView.dequeueReusableCell(withIdentifier: "KanjiReading", for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
+      guard let cell = kanjiReadingTableView.dequeueReusableCell(withIdentifier: "KanjiReading", for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
       
       let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
       let shuffle = item.possibleAnswers.shuffled()
@@ -101,27 +105,25 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
       
       
-//      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
+      //      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
       cell.backgroundColor = UIColor.white
       return cell
     }
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-  }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    //sticky header
+    // Note: Sticky Header
     if scrollView.contentOffset.y < 0.0 {
-      if let cell = KanjiReadingTableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+      if let cell = kanjiReadingTableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
         cell.frame.origin.y = scrollView.contentOffset.y
         let originalHeight:CGFloat = 125.0
         cell.frame.size.height = originalHeight + scrollView.contentOffset.y * (-1.0)
-        //        print(cell.frame.size.height)
+        // print(cell.frame.size.height)
       }
     }
   }
+  
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.row == 0 {
@@ -130,14 +132,22 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       return 200.0
     }
   }
-    
+  
 }
 
 extension KanjiReadingViewController: KanjiReadingCellDelegate {
-  func didPushButton(at index: Int) {
+  //Note: Find out which question the user is on, so their answer can be correctly checked
+  func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int) {
     
-//    testItems.selectedAnswer = testItems[cellIndex].possibleAnswers[index]
+    let position: CGPoint = sender.convert(.zero, to: self.kanjiReadingTableView)
+    if let indexPath = self.kanjiReadingTableView.indexPathForRow(at: position) {
+      if testItems[indexPath.row].selectedAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
+        
+            //TODO: selected answer is correct OR incorrect
+      }
+    }
   }
   
-  
 }
+
+

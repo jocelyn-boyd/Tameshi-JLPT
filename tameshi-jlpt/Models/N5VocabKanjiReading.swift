@@ -20,6 +20,7 @@ struct N5VocabKanjiReading {
     let option: Option
   }
   
+  // remove
   enum Option {
     case correct
     case incorrect
@@ -36,7 +37,7 @@ struct N5VocabKanjiReading {
 
   
   static let vocabSectionOne =
-    [N5VocabKanjiReading(highlightedKanji: "先週", question: "先週　デパートに　かいものに　いきました。", possibleAnswers: [Answer(text: "せんしゅう", option: .correct), Answer(text: "ぜんしゅ", option: .incorrect), Answer(text: "せんしゅ", option: .incorrect), Answer(text: "ぜんしゅう", option: .incorrect)]),
+    [N5VocabKanjiReading(highlightedKanji: "先週", question: "先週　デパートに　かいものに　いきました。", possibleAnswers: [Answer(text: "せんしゅう", option: .correct), Answer(text: "ぜんしゅ", option: .incorrect), Answer(text: "せんしゅ", option: .incorrect), Answer(text: "ぜんしゅう", option: .incorrect)], selectedAnswer: Answer(text: "せんしゅう", option: .correct)),
      N5VocabKanjiReading(highlightedKanji: "後", question: "ごはんの　後で　さんぽします。", possibleAnswers: [Answer(text: "あと", option: .correct), Answer(text: "つぎ", option: .incorrect), Answer(text: "うしろ", option: .incorrect), Answer(text: "まえ", option: .incorrect)]),
      N5VocabKanjiReading(highlightedKanji: "言って", question: "もう　いちど　言って　ください。", possibleAnswers: [Answer(text: "いって", option: .correct), Answer(text: "きって", option: .incorrect), Answer(text: "たって", option: .incorrect), Answer(text: "まって", option: .incorrect)]),
      N5VocabKanjiReading(highlightedKanji: "山", question: "ちかくに　山が　あります。", possibleAnswers: [Answer(text: "やま", option: .correct), Answer(text: "かわ", option: .incorrect), Answer(text: "いけ", option: .incorrect), Answer(text: "うみ", option: .incorrect)]),

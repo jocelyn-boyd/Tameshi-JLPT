@@ -9,107 +9,73 @@
 import UIKit
 
 protocol KanjiReadingCellDelegate: class {
-  func didPushButton(at index: Int, for cellIndex: Int)
+  func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int)
 }
+
 
 class KanjiReadingCell: UITableViewCell {
   
   weak var delegate: KanjiReadingCellDelegate?
-  var index: Int!
-  
-  lazy var numberLabel: UILabel = {
-    let label = UILabel()
-    return label
-  }()
+  var index: Int = 0
   
   lazy var questionLabel: UILabel = {
     let label = UILabel()
-    label.text = ""
-    label.numberOfLines = 1
-    label.lineBreakMode = .byWordWrapping
-    label.allowsDefaultTighteningForTruncation = true
-    label.textAlignment = .natural
+    Utilities.setQuestionLabel(label)
     return label
   }()
   
   lazy var optionOneButton: UIButton = {
     let button = UIButton()
-    button.setTitle("One", for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.layer.cornerRadius = 5
-    button.layer.borderColor = UIColor.black.cgColor
-    button.layer.borderWidth = 2
-    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     button.tag = 0
+    button.setTitle("One", for: .normal)
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    Utilities.setButton(button)
     return button
   }()
   
   lazy var optionTwoButton: UIButton = {
     let button = UIButton()
+     button.tag = 1
     button.setTitle("Two", for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.layer.cornerRadius = 5
-    button.layer.borderColor = UIColor.black.cgColor
-    button.layer.borderWidth = 2
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
-    button.tag = 1
+    Utilities.setButton(button)
     return button
   }()
   
   lazy var optionThreeButton: UIButton = {
     let button = UIButton()
-    button.setTitle("Three", for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.layer.cornerRadius = 5
-    button.layer.borderColor = UIColor.black.cgColor
-    button.layer.borderWidth = 2
-    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     button.tag = 2
+    button.setTitle("Three", for: .normal)
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    Utilities.setButton(button)
     return button
   }()
   
   lazy var optionFourButton: UIButton = {
     let button = UIButton()
-    button.setTitle("Four", for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.layer.cornerRadius = 5
-    button.layer.borderColor = UIColor.black.cgColor
-    button.layer.borderWidth = 2
-    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     button.tag = 3
+    button.setTitle("Four", for: .normal)
+    button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
+    Utilities.setButton(button)
     return button
   }()
   
   
  @objc func handleButtonTap(_ sender: UIButton) {
-  delegate?.didPushButton(at: sender.tag, for: index)
-  }
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
+    delegate?.didPushButton(sender: sender, at: sender.tag, for: index)
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-    
     // Configure the view for the selected state
   }
   
-  func contrainElements() {
-    contentView.addSubview(numberLabel)
+  func addsSubviews() {
     contentView.addSubview(questionLabel)
     contentView.addSubview(optionOneButton)
     contentView.addSubview(optionTwoButton)
     contentView.addSubview(optionThreeButton)
     contentView.addSubview(optionFourButton)
-    
-    numberLabel.translatesAutoresizingMaskIntoConstraints = false
-    questionLabel.translatesAutoresizingMaskIntoConstraints = false
-    optionOneButton.translatesAutoresizingMaskIntoConstraints = false
-    optionTwoButton.translatesAutoresizingMaskIntoConstraints = false
-    optionThreeButton.translatesAutoresizingMaskIntoConstraints = false
-    optionFourButton.translatesAutoresizingMaskIntoConstraints = false
   }
   
   func labelItem() {
@@ -150,7 +116,7 @@ class KanjiReadingCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    contrainElements()
+    addsSubviews()
     labelItem()
     optionButtonsTopSet()
     optionButtonsBottomSet()

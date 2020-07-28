@@ -11,8 +11,6 @@
 		D814457423F9D89C0035C426 /* KanjiReadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D814457323F9D89C0035C426 /* KanjiReadingCell.swift */; };
 		D893BA9123EDD2EB00146390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BA9023EDD2EB00146390 /* AppDelegate.swift */; };
 		D893BA9323EDD2EB00146390 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BA9223EDD2EB00146390 /* SceneDelegate.swift */; };
-		D893BA9523EDD2EB00146390 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BA9423EDD2EB00146390 /* ViewController.swift */; };
-		D893BA9823EDD2EB00146390 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D893BA9623EDD2EB00146390 /* Main.storyboard */; };
 		D893BA9A23EDD2EE00146390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893BA9923EDD2EE00146390 /* Assets.xcassets */; };
 		D893BA9D23EDD2EE00146390 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D893BA9B23EDD2EE00146390 /* LaunchScreen.storyboard */; };
 		D893BAA623EDD6F600146390 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BAA523EDD6F600146390 /* Utilities.swift */; };
@@ -26,8 +24,6 @@
 		D893BA8D23EDD2EB00146390 /* tameshi-jlpt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tameshi-jlpt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D893BA9023EDD2EB00146390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D893BA9223EDD2EB00146390 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D893BA9423EDD2EB00146390 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D893BA9723EDD2EB00146390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D893BA9923EDD2EE00146390 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D893BA9C23EDD2EE00146390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D893BA9E23EDD2EE00146390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,21 +43,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D814457123F9D7C90035C426 /* ViewControllers */ = {
+		D814457123F9D7C90035C426 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				D814456F23F9D7C20035C426 /* KanjiReadingViewController.swift */,
-				D814457223F9D8540035C426 /* TableViewCells */,
+				D814457223F9D8540035C426 /* Cells */,
 			);
-			path = ViewControllers;
+			path = Screens;
 			sourceTree = "<group>";
 		};
-		D814457223F9D8540035C426 /* TableViewCells */ = {
+		D814457223F9D8540035C426 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D814457323F9D89C0035C426 /* KanjiReadingCell.swift */,
 			);
-			path = TableViewCells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D893BA8423EDD2EB00146390 = {
@@ -83,15 +79,10 @@
 		D893BA8F23EDD2EB00146390 /* tameshi-jlpt */ = {
 			isa = PBXGroup;
 			children = (
-				D814457123F9D7C90035C426 /* ViewControllers */,
+				D814457123F9D7C90035C426 /* Screens */,
 				D893BAA723EDD85400146390 /* Models */,
 				D893BAA423EDD69900146390 /* Helpers */,
-				D893BA9023EDD2EB00146390 /* AppDelegate.swift */,
-				D893BA9223EDD2EB00146390 /* SceneDelegate.swift */,
-				D893BA9423EDD2EB00146390 /* ViewController.swift */,
-				D893BA9623EDD2EB00146390 /* Main.storyboard */,
-				D893BA9923EDD2EE00146390 /* Assets.xcassets */,
-				D893BA9B23EDD2EE00146390 /* LaunchScreen.storyboard */,
+				D8AE96A324BFBA39000CBE60 /* Supporting */,
 				D893BA9E23EDD2EE00146390 /* Info.plist */,
 			);
 			path = "tameshi-jlpt";
@@ -112,6 +103,17 @@
 				D893BAAA23EDDAC200146390 /* N5VocabKanjiReading.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D8AE96A324BFBA39000CBE60 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				D893BA9023EDD2EB00146390 /* AppDelegate.swift */,
+				D893BA9223EDD2EB00146390 /* SceneDelegate.swift */,
+				D893BA9923EDD2EE00146390 /* Assets.xcassets */,
+				D893BA9B23EDD2EE00146390 /* LaunchScreen.storyboard */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,7 +176,6 @@
 			files = (
 				D893BA9D23EDD2EE00146390 /* LaunchScreen.storyboard in Resources */,
 				D893BA9A23EDD2EE00146390 /* Assets.xcassets in Resources */,
-				D893BA9823EDD2EB00146390 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +187,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D814457423F9D89C0035C426 /* KanjiReadingCell.swift in Sources */,
-				D893BA9523EDD2EB00146390 /* ViewController.swift in Sources */,
 				D893BAA923EDD8BE00146390 /* TestInstructions.swift in Sources */,
 				D893BA9123EDD2EB00146390 /* AppDelegate.swift in Sources */,
 				D893BAAB23EDDAC200146390 /* N5VocabKanjiReading.swift in Sources */,
@@ -199,14 +199,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D893BA9623EDD2EB00146390 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D893BA9723EDD2EB00146390 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D893BA9B23EDD2EE00146390 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
