@@ -14,5 +14,30 @@ class Utilities {
   static func setViewBackgroundColor(_ view: UIView) {
     view.backgroundColor = .white
 }
-
+  
+  static func setHeaderLabel(_ label: UILabel) {
+    label.numberOfLines = 0
+    
+    label.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  static func setQuestionLabel(_ label: UILabel) {
+     label.numberOfLines = 1
+     label.lineBreakMode = .byWordWrapping
+     label.allowsDefaultTighteningForTruncation = true
+     label.textAlignment = .natural
+     
+     label.translatesAutoresizingMaskIntoConstraints = false
+   }
+  
+  
+  static func setButton(_ button: UIButton) {
+    button.setTitleColor(.black, for: .normal)
+    
+    button.layer.cornerRadius = 5
+    button.layer.borderColor = UIColor.black.cgColor
+    button.layer.borderWidth = 2
+    
+    button.translatesAutoresizingMaskIntoConstraints = false
+  }
 }
