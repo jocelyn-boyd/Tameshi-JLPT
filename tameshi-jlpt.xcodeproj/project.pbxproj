@@ -43,11 +43,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D800AD6724CFA27000AB30BA /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				D814457223F9D8540035C426 /* Cells */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		D814457123F9D7C90035C426 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				D814456F23F9D7C20035C426 /* KanjiReadingViewController.swift */,
-				D814457223F9D8540035C426 /* Cells */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -79,6 +86,7 @@
 		D893BA8F23EDD2EB00146390 /* tameshi-jlpt */ = {
 			isa = PBXGroup;
 			children = (
+				D800AD6724CFA27000AB30BA /* CustomViews */,
 				D814457123F9D7C90035C426 /* Screens */,
 				D893BAA723EDD85400146390 /* Models */,
 				D893BAA423EDD69900146390 /* Helpers */,
