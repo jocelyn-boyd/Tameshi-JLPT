@@ -15,10 +15,12 @@ protocol KanjiReadingCellDelegate: class {
 
 class KanjiReadingCell: UITableViewCell {
   
+  // MARK: Internal Properties
   static let reuseIdentifier = String(describing: KanjiReadingCell.self)
   weak var delegate: KanjiReadingCellDelegate?
   var index: Int = 0
   
+  // MARK: UI Properties
   lazy var questionLabel: UILabel = {
     let label = UILabel()
     Utilities.setQuestionLabel(label)
@@ -28,7 +30,6 @@ class KanjiReadingCell: UITableViewCell {
   lazy var optionOneButton: UIButton = {
     let button = UIButton()
     button.tag = 0
-    button.setTitle("One", for: .normal)
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
@@ -36,8 +37,7 @@ class KanjiReadingCell: UITableViewCell {
   
   lazy var optionTwoButton: UIButton = {
     let button = UIButton()
-     button.tag = 1
-    button.setTitle("Two", for: .normal)
+    button.tag = 1
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
@@ -46,7 +46,6 @@ class KanjiReadingCell: UITableViewCell {
   lazy var optionThreeButton: UIButton = {
     let button = UIButton()
     button.tag = 2
-    button.setTitle("Three", for: .normal)
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
@@ -55,15 +54,23 @@ class KanjiReadingCell: UITableViewCell {
   lazy var optionFourButton: UIButton = {
     let button = UIButton()
     button.tag = 3
-    button.setTitle("Four", for: .normal)
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
   }()
   
   
- @objc func handleButtonTap(_ sender: UIButton) {
-    delegate?.didPushButton(sender: sender, at: sender.tag, for: index)
+  // MARK: - Override Methods
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    addsSubviews()
+    configureQuesLabel()
+    configureTopHorizontalStackView()
+    configureBottomHorizontalStackView()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -71,7 +78,13 @@ class KanjiReadingCell: UITableViewCell {
     // Configure the view for the selected state
   }
   
-  func addsSubviews() {
+  // MARK: - Methods
+  @objc private func handleButtonTap(_ sender: UIButton) {
+    delegate?.didPushButton(sender: sender, at: sender.tag, for: index)
+  }
+  
+  
+  private func addsSubviews() {
     contentView.addSubview(questionLabel)
     contentView.addSubview(optionOneButton)
     contentView.addSubview(optionTwoButton)
@@ -79,14 +92,15 @@ class KanjiReadingCell: UITableViewCell {
     contentView.addSubview(optionFourButton)
   }
   
-  func labelItem() {
+  
+  func configureQuesLabel() {
     NSLayoutConstraint.activate([
       questionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
       questionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
       questionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)])
   }
   
-  func optionButtonsTopSet(){
+  func configureTopHorizontalStackView(){
     let stackView = UIStackView(arrangedSubviews: [optionOneButton,optionTwoButton])
     stackView.axis = .horizontal
     stackView.spacing = 50
@@ -101,7 +115,7 @@ class KanjiReadingCell: UITableViewCell {
     ])
   }
   
-  func optionButtonsBottomSet() {
+  func configureBottomHorizontalStackView() {
     let stackView = UIStackView(arrangedSubviews: [optionThreeButton, optionFourButton])
     stackView.axis = .horizontal
     stackView.spacing = 50
@@ -114,17 +128,4 @@ class KanjiReadingCell: UITableViewCell {
       stackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 50),
       stackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -50)])
   }
-  
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    addsSubviews()
-    labelItem()
-    optionButtonsTopSet()
-    optionButtonsBottomSet()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
 }
