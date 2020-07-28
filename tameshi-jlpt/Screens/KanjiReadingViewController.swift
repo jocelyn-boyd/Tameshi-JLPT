@@ -10,9 +10,10 @@ import UIKit
 
 class KanjiReadingViewController: UIViewController {
   
+  // MARK: Internal Properties
   var testItems = N5VocabKanjiReading.vocabSectionOne
   
-  //MARK: - Properties
+  //MARK: - UI Properties
   lazy var headerSectionLabel: UILabel = {
     let label = UILabel()
     label.text = "問題 １" // "Mondai 1"
