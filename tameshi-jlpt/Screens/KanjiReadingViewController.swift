@@ -28,6 +28,7 @@ class KanjiReadingViewController: UIViewController {
     return tableView
   }()
   
+  
   //MARK: - Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +36,7 @@ class KanjiReadingViewController: UIViewController {
     configureHeaderLabel()
     configureTableView()
   }
+  
   
   //MARK: - Private Methods
   private  func configureViewController() {
@@ -45,6 +47,7 @@ class KanjiReadingViewController: UIViewController {
     
     Utilities.setViewBackgroundColor(view)
   }
+  
   
   private func configureHeaderLabel() {
     view.addSubview(headerSectionLabel)
@@ -66,7 +69,6 @@ class KanjiReadingViewController: UIViewController {
       kanjiReadingTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
       kanjiReadingTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
   }
-  
 }
 
 
@@ -144,10 +146,13 @@ extension KanjiReadingViewController: KanjiReadingCellDelegate {
   func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int) {
     
     let position: CGPoint = sender.convert(.zero, to: self.kanjiReadingTableView)
+    
     if let indexPath = self.kanjiReadingTableView.indexPathForRow(at: position) {
+      print(position)
+      
       if testItems[indexPath.row].selectedAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
-        
             //TODO: selected answer is correct OR incorrect
+        
       }
     }
   }
