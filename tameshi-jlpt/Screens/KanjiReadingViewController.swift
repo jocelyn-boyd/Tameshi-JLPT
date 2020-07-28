@@ -21,41 +21,42 @@ class KanjiReadingViewController: UIViewController {
   }()
   
   lazy var kanjiReadingTableView: UITableView = {
-    let table = UITableView()
-    table.allowsSelection = false
-    table.register(KanjiReadingCell.self, forCellReuseIdentifier: "KanjiReading")
-    table.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
-    return table
+    let tableView = UITableView()
+    tableView.allowsSelection = false
+    tableView.register(KanjiReadingCell.self, forCellReuseIdentifier: KanjiReadingCell.reuseIdentifier)
+    Utilities.setViewBackgroundColor(tableView)
+    return tableView
   }()
   
   //MARK: - Lifecycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     configureViewController()
-    setHeaderLabel()
-    setN5VocabTableView()
+    configureHeaderLabel()
+    configureTableView()
   }
   
   //MARK: - Private Methods
   private  func configureViewController() {
-    view.backgroundColor = UIColor.systemBackground
     kanjiReadingTableView.delegate = self
     kanjiReadingTableView.dataSource = self
     
     kanjiReadingTableView.rowHeight = UITableView.automaticDimension
+    
+    Utilities.setViewBackgroundColor(view)
   }
   
-  private func setHeaderLabel() {
+  private func configureHeaderLabel() {
     view.addSubview(headerSectionLabel)
     headerSectionLabel.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
       headerSectionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       headerSectionLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 25)])
-    
   }
   
-  private func setN5VocabTableView() {
+  
+  private func configureTableView() {
     view.addSubview(kanjiReadingTableView)
     kanjiReadingTableView.translatesAutoresizingMaskIntoConstraints = false
     
@@ -68,10 +69,13 @@ class KanjiReadingViewController: UIViewController {
   
 }
 
-extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate {
+
+//MARK: UITableViewDataSource
+extension KanjiReadingViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return testItems.count + 1
   }
+  
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row == 0 {
@@ -84,7 +88,7 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       cell.isHighlighted = false
       return cell
     } else {
-      guard let cell = kanjiReadingTableView.dequeueReusableCell(withIdentifier: "KanjiReading", for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
+      guard let cell = kanjiReadingTableView.dequeueReusableCell(withIdentifier: KanjiReadingCell.reuseIdentifier, for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
       
       let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
       let shuffle = item.possibleAnswers.shuffled()
@@ -103,15 +107,14 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
       cell.optionThreeButton.setTitle(shuffle[2].text, for: .normal)
       cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
-      
-      
-      //      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
-      cell.backgroundColor = UIColor.white
       return cell
     }
   }
-  
-  
+}
+
+
+//MARK: UITableViewDelegate
+extension KanjiReadingViewController: UITableViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     // Note: Sticky Header
     if scrollView.contentOffset.y < 0.0 {
@@ -132,9 +135,10 @@ extension KanjiReadingViewController: UITableViewDataSource, UITableViewDelegate
       return 200.0
     }
   }
-  
 }
 
+
+//MARK: KanjiReadingCellDelegate
 extension KanjiReadingViewController: KanjiReadingCellDelegate {
   //Note: Find out which question the user is on, so their answer can be correctly checked
   func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int) {
@@ -147,7 +151,6 @@ extension KanjiReadingViewController: KanjiReadingCellDelegate {
       }
     }
   }
-  
 }
 
 

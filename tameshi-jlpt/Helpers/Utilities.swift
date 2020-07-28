@@ -12,7 +12,7 @@ import UIKit
 class Utilities {
   
   static func setViewBackgroundColor(_ view: UIView) {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
 }
   
   static func setHeaderLabel(_ label: UILabel) {
