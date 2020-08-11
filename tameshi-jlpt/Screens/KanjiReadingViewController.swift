@@ -151,7 +151,7 @@ extension KanjiReadingViewController: KanjiReadingCellDelegate {
     if let indexPath = self.kanjiReadingTableView.indexPathForRow(at: position) {
       print(position)
       
-      if testItems[indexPath.row].selectedAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
+      if testItems[indexPath.row].correctAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
             //TODO: selected answer is correct OR incorrect
         
       }

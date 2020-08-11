@@ -13,18 +13,18 @@ struct N5VocabKanjiReading {
   let highlightedKanji: String
   let question: String
   let possibleAnswers: [Answer]
-  var selectedAnswer: Answer?
+  var correctAnswer: Answer?
   
   struct Answer {
     let text: String
-    let option: Option
+//    let option: Option
   }
   
   // remove
-  enum Option {
-    case correct
-    case incorrect
-  }
+//  enum Option {
+//    case correct
+//    case incorrect
+//  }
   
   static func shuffleQuestions() -> [N5VocabKanjiReading] {
     return vocabSectionOne
@@ -37,14 +37,15 @@ struct N5VocabKanjiReading {
 
   
   static let vocabSectionOne =
-    [N5VocabKanjiReading(highlightedKanji: "先週", question: "先週　デパートに　かいものに　いきました。", possibleAnswers: [Answer(text: "せんしゅう", option: .correct), Answer(text: "ぜんしゅ", option: .incorrect), Answer(text: "せんしゅ", option: .incorrect), Answer(text: "ぜんしゅう", option: .incorrect)], selectedAnswer: Answer(text: "せんしゅう", option: .correct)),
-     N5VocabKanjiReading(highlightedKanji: "後", question: "ごはんの　後で　さんぽします。", possibleAnswers: [Answer(text: "あと", option: .correct), Answer(text: "つぎ", option: .incorrect), Answer(text: "うしろ", option: .incorrect), Answer(text: "まえ", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "言って", question: "もう　いちど　言って　ください。", possibleAnswers: [Answer(text: "いって", option: .correct), Answer(text: "きって", option: .incorrect), Answer(text: "たって", option: .incorrect), Answer(text: "まって", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "山", question: "ちかくに　山が　あります。", possibleAnswers: [Answer(text: "やま", option: .correct), Answer(text: "かわ", option: .incorrect), Answer(text: "いけ", option: .incorrect), Answer(text: "うみ", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "多い", question: "この　ホテルは　へやが　多いです。", possibleAnswers: [Answer(text: "おおい", option: .correct), Answer(text: "さくない", option: .incorrect), Answer(text: "せまい", option: .incorrect), Answer(text: "ひろい", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "学校", question: "ともだちと　いっしょに　学校に　いきます。", possibleAnswers: [Answer(text: "がっこう", option: .correct), Answer(text: "がこう", option: .incorrect), Answer(text: "がこお", option: .incorrect), Answer(text: "がっこお", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "六本", question: "えんぴつが　六本　あります。", possibleAnswers: [Answer(text: "ろっぽん", option: .correct), Answer(text: "ろくぼん", option: .incorrect), Answer(text: "ろくぽん", option: .incorrect), Answer(text: "ろっぼん", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "新聞", question: "この　新聞は　いくらですか。", possibleAnswers: [Answer(text: "しんぶん", option: .correct), Answer(text: "しんおん", option: .incorrect), Answer(text: "しおん", option: .incorrect), Answer(text: "しぶん", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "安い", question: "この　カメラは　安いです。", possibleAnswers: [Answer(text: "やすい", option: .correct), Answer(text: "たかい", option: .incorrect), Answer(text: "おもい", option: .incorrect), Answer(text: "かるい", option: .incorrect)]),
-     N5VocabKanjiReading(highlightedKanji: "外", question: "かさは　外に　あります。", possibleAnswers: [Answer(text: "そと", option: .correct), Answer(text: "いえ", option: .incorrect), Answer(text: "なか", option: .incorrect), Answer(text: "にわ", option: .incorrect)])]
+    [N5VocabKanjiReading(highlightedKanji: "先週", question: "先週　デパートに　かいものに　いきました。", possibleAnswers: [Answer(text: "せんしゅう"), Answer(text: "ぜんしゅ"), Answer(text: "せんしゅ"), Answer(text: "ぜんしゅう")], correctAnswer: Answer(text: "せんしゅう")),
+     N5VocabKanjiReading(highlightedKanji: "後", question: "ごはんの　後で　さんぽします。", possibleAnswers: [Answer(text: "あと"), Answer(text: "つぎ"), Answer(text: "うしろ"), Answer(text: "まえ")], correctAnswer: Answer(text: "あと")),
+     N5VocabKanjiReading(highlightedKanji: "言って", question: "もう　いちど　言って　ください。", possibleAnswers: [Answer(text: "いって"), Answer(text: "きって"), Answer(text: "たって"), Answer(text: "まって")], correctAnswer: Answer(text: "言って")),
+     N5VocabKanjiReading(highlightedKanji: "山", question: "ちかくに　山が　あります。", possibleAnswers: [Answer(text: "やま"), Answer(text: "かわ"), Answer(text: "いけ"), Answer(text: "うみ")], correctAnswer: Answer(text: "山")),
+     N5VocabKanjiReading(highlightedKanji: "多い", question: "この　ホテルは　へやが　多いです。", possibleAnswers: [Answer(text: "おおい"), Answer(text: "さくない"), Answer(text: "せまい"), Answer(text: "ひろい")], correctAnswer: Answer(text: "多い")),
+     N5VocabKanjiReading(highlightedKanji: "学校", question: "ともだちと　いっしょに　学校に　いきます。", possibleAnswers: [Answer(text: "がっこう"), Answer(text: "がこう"), Answer(text: "がこお"), Answer(text: "がっこお")], correctAnswer: Answer(text: "学校")),
+     N5VocabKanjiReading(highlightedKanji: "六本", question: "えんぴつが　六本　あります。", possibleAnswers: [Answer(text: "ろっぽん"), Answer(text: "ろくぼん"), Answer(text: "ろくぽん"), Answer(text: "ろっぼん")], correctAnswer: Answer(text: "六本")),
+     N5VocabKanjiReading(highlightedKanji: "新聞", question: "この　新聞は　いくらですか。", possibleAnswers: [Answer(text: "しんぶん"), Answer(text: "しんおん"), Answer(text: "しおん"), Answer(text: "しぶん")], correctAnswer: Answer(text: "新聞")),
+     N5VocabKanjiReading(highlightedKanji: "安い", question: "この　カメラは　安いです。", possibleAnswers: [Answer(text: "やすい"), Answer(text: "たかい"), Answer(text: "おもい"), Answer(text: "かるい")], correctAnswer: Answer(text: "しぶん")),
+     N5VocabKanjiReading(highlightedKanji: "外", question: "かさは　外に　あります。", possibleAnswers: [Answer(text: "そと"), Answer(text: "いえ"), Answer(text: "なか"), Answer(text: "にわ")], correctAnswer: Answer(text: "外"))
+  ]
 }
