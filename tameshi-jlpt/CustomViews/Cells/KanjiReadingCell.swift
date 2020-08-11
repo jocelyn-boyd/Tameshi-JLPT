@@ -17,6 +17,7 @@ class KanjiReadingCell: UITableViewCell {
   
   // MARK: Internal Properties
   static let reuseIdentifier = String(describing: KanjiReadingCell.self)
+  
   weak var delegate: KanjiReadingCellDelegate?
   var index: Int = 0
   

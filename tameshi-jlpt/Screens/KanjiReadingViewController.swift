@@ -9,7 +9,6 @@
 import UIKit
 
 class KanjiReadingViewController: UIViewController {
-  
   // MARK: Internal Properties
   var testItems = N5VocabKanjiReading.vocabSectionOne
   
@@ -78,34 +77,34 @@ extension KanjiReadingViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return testItems.count + 1
   }
-  
-  
+
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.row == 0 {
       let cell = UITableViewCell()
       let test = Instruction.jPNInstructions.rawValue
       cell.textLabel?.text = test
       cell.textLabel?.numberOfLines = 3
-      //      cell.backgroundColor = UIColor.init(displayP3Red: 243/250, green: 239/250, blue: 235/250, alpha: 1)
       cell.backgroundColor = UIColor.white
       cell.isHighlighted = false
+      
       return cell
     } else {
       guard let cell = kanjiReadingTableView.dequeueReusableCell(withIdentifier: KanjiReadingCell.reuseIdentifier, for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
-      
+
       let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
       let shuffle = item.possibleAnswers.shuffled()
-      
+
       let questionText = item.question
       let fontAttributes = UIFont.boldSystemFont(ofSize: 20)
       let underlineAttributes = NSUnderlineStyle.single.rawValue
       let attributedQuesText = NSMutableAttributedString(string: questionText)
       let attributes: [NSAttributedString.Key: Any] = [.font: fontAttributes, .underlineStyle: underlineAttributes]
-      
+
       attributedQuesText.addAttributes(attributes, range: item.rangeOfHighlightedKanji)
       cell.questionLabel.attributedText = attributedQuesText
       cell.delegate = self
-      
+
       cell.optionOneButton.setTitle(shuffle[0].text, for: .normal)
       cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
       cell.optionThreeButton.setTitle(shuffle[2].text, for: .normal)
@@ -145,15 +144,18 @@ extension KanjiReadingViewController: UITableViewDelegate {
 extension KanjiReadingViewController: KanjiReadingCellDelegate {
   //Note: Find out which question the user is on, so their answer can be correctly checked
   func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int) {
-    
+
     let position: CGPoint = sender.convert(.zero, to: self.kanjiReadingTableView)
-    
+
+
     if let indexPath = self.kanjiReadingTableView.indexPathForRow(at: position) {
       print(position)
-      
+
       if testItems[indexPath.row].correctAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
             //TODO: selected answer is correct OR incorrect
-        
+        print("correct answer")
+      } else {
+        print("not correct answer")
       }
     }
   }

@@ -16,6 +16,7 @@
 		D893BAA623EDD6F600146390 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BAA523EDD6F600146390 /* Utilities.swift */; };
 		D893BAA923EDD8BE00146390 /* TestInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BAA823EDD8BE00146390 /* TestInstructions.swift */; };
 		D893BAAB23EDDAC200146390 /* N5VocabKanjiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893BAAA23EDDAC200146390 /* N5VocabKanjiReading.swift */; };
+		D8C9CD6C24E32E9300844161 /* N5KanjiReadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C9CD6B24E32E9300844161 /* N5KanjiReadingVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D893BAA523EDD6F600146390 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D893BAA823EDD8BE00146390 /* TestInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInstructions.swift; sourceTree = "<group>"; };
 		D893BAAA23EDDAC200146390 /* N5VocabKanjiReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = N5VocabKanjiReading.swift; sourceTree = "<group>"; };
+		D8C9CD6B24E32E9300844161 /* N5KanjiReadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = N5KanjiReadingVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				D814456F23F9D7C20035C426 /* KanjiReadingViewController.swift */,
+				D8C9CD6B24E32E9300844161 /* N5KanjiReadingVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				D893BAA923EDD8BE00146390 /* TestInstructions.swift in Sources */,
 				D893BA9123EDD2EB00146390 /* AppDelegate.swift in Sources */,
 				D893BAAB23EDDAC200146390 /* N5VocabKanjiReading.swift in Sources */,
+				D8C9CD6C24E32E9300844161 /* N5KanjiReadingVC.swift in Sources */,
 				D814457023F9D7C20035C426 /* KanjiReadingViewController.swift in Sources */,
 				D893BAA623EDD6F600146390 /* Utilities.swift in Sources */,
 				D893BA9323EDD2EB00146390 /* SceneDelegate.swift in Sources */,
