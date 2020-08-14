@@ -13,10 +13,13 @@ The main feature of the app is to closely simulate a genuine test-taking experie
 
 ## WIP Features 
 - N5 Vocabulary Section, Section 1 out 4 - Kanji Reading Multiple Choice
-- Display an alert to let the user know if the selected answer was correct or not
+- Keep track of the state of the selected answer button
+- Check if the selected answer is correct or not
 
 ## Future Features
+- present an alert to user with tally of correct answers
 - keep track of best scores and recent scores
+- timed sessions
 
 ## Screenshots (more coming soon!)
 ![image](images/mondaiOne.png)
