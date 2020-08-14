@@ -25,7 +25,7 @@ The main feature of the app is to closely simulate a genuine test-taking experie
 ![image](images/mondaiOne.png)
 
 ## Programming Languages
-- Swift
+- Swift 5
 
 ## Development Tools
-- XCode
+- XCode 11
