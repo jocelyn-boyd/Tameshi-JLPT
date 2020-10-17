@@ -12,7 +12,6 @@ protocol KanjiReadingCellDelegate: class {
   func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int)
 }
 
-
 class KanjiReadingCell: UITableViewCell {
   
   // MARK: Internal Properties

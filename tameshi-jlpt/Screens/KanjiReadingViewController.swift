@@ -9,13 +9,18 @@
 import UIKit
 
 class KanjiReadingViewController: UIViewController {
+    
+    enum Text {
+        static let sectionHeaderOne = "問題 １" //-> Mondai 1
+    }
+    
   // MARK: Internal Properties
   var testItems = N5VocabKanjiReading.vocabSectionOne
   
   //MARK: - UI Properties
   lazy var headerSectionLabel: UILabel = {
     let label = UILabel()
-    label.text = "問題 １" // "Mondai 1"
+    label.text = Text.sectionHeaderOne
     Utilities.setHeaderLabel(label)
     return label
   }()
@@ -42,9 +47,7 @@ class KanjiReadingViewController: UIViewController {
   private  func configureViewController() {
     kanjiReadingTableView.delegate = self
     kanjiReadingTableView.dataSource = self
-    
     kanjiReadingTableView.rowHeight = UITableView.automaticDimension
-    
     Utilities.setViewBackgroundColor(view)
   }
   
@@ -80,6 +83,7 @@ extension KanjiReadingViewController: UITableViewDataSource {
 
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    // Header Row
     if indexPath.row == 0 {
       let cell = UITableViewCell()
       let test = Instruction.jPNInstructions.rawValue
@@ -90,10 +94,12 @@ extension KanjiReadingViewController: UITableViewDataSource {
       
       return cell
     } else {
+    // Test Questions
       guard let cell = kanjiReadingTableView.dequeueReusableCell(withIdentifier: KanjiReadingCell.reuseIdentifier, for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
 
-      let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
-      let shuffle = item.possibleAnswers.shuffled()
+//      let item = N5VocabKanjiReading.shuffleQuestions()[indexPath.row - 1]
+        let item = testItems[indexPath.row - 1]
+        let shuffle = item.possibleAnswers //.shuffled()
 
       let questionText = item.question
       let fontAttributes = UIFont.boldSystemFont(ofSize: 20)
@@ -108,7 +114,7 @@ extension KanjiReadingViewController: UITableViewDataSource {
       cell.optionOneButton.setTitle(shuffle[0].text, for: .normal)
       cell.optionTwoButton.setTitle(shuffle[1].text, for: .normal)
       cell.optionThreeButton.setTitle(shuffle[2].text, for: .normal)
-      cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
+//      cell.optionFourButton.setTitle(shuffle[3].text, for: .normal)
       return cell
     }
   }
@@ -147,8 +153,11 @@ extension KanjiReadingViewController: KanjiReadingCellDelegate {
 
     let position: CGPoint = sender.convert(.zero, to: self.kanjiReadingTableView)
 
-
-    if let indexPath = self.kanjiReadingTableView.indexPathForRow(at: position) {
+    print(sender.tag)
+//    print(testItems[index])
+//    print(cellIndex)
+    print(index)
+    if let indexPath = kanjiReadingTableView.indexPathForRow(at: position) {
       print(position)
 
       if testItems[indexPath.row].correctAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
