@@ -98,9 +98,9 @@ extension KanjiReadingViewController: UITableViewDataSource {
             guard let cell = kanjiReadingTableView.dequeueReusableCell(withIdentifier: KanjiReadingCell.reuseIdentifier, for: indexPath) as? KanjiReadingCell else {return UITableViewCell()}
             
             let items = testItems[indexPath.row - 1]
-            let multipleChoiceAnswers = items.possibleAnswers
-            
             let questionText = items.question
+            let multipleChoiceAns = items.multipleChoiceAnswers
+            
             let fontAttributes = UIFont.boldSystemFont(ofSize: 20)
             let underlineAttributes = NSUnderlineStyle.single.rawValue
             let attributedQuesText = NSMutableAttributedString(string: questionText)
@@ -110,10 +110,10 @@ extension KanjiReadingViewController: UITableViewDataSource {
             cell.questionLabel.attributedText = attributedQuesText
             cell.delegate = self
             
-            cell.optionOneButton.setTitle(multipleChoiceAnswers[0].text, for: .normal)
-            cell.optionTwoButton.setTitle(multipleChoiceAnswers[1].text, for: .normal)
-            cell.optionThreeButton.setTitle(multipleChoiceAnswers[2].text, for: .normal)
-            cell.optionFourButton.setTitle(multipleChoiceAnswers[3].text, for: .normal)
+            cell.optionOneButton.setTitle(multipleChoiceAns[0].text, for: .normal)
+            cell.optionTwoButton.setTitle(multipleChoiceAns[1].text, for: .normal)
+            cell.optionThreeButton.setTitle(multipleChoiceAns[2].text, for: .normal)
+            cell.optionFourButton.setTitle(multipleChoiceAns[3].text, for: .normal)
             return cell
         }
     }
@@ -149,13 +149,23 @@ extension KanjiReadingViewController: UITableViewDelegate {
 extension KanjiReadingViewController: KanjiReadingCellDelegate {
     //Note: Find out which question the user is on, so their answer can be correctly checked
     func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int) {
+        
+        print("Question: \(testItems[cellIndex].id)")
+        print("Correct Answer: \(String(describing: testItems[cellIndex].correctAnswer!.text))")
+        print("Selected Anwers: \(testItems[cellIndex].multipleChoiceAnswers[index - 1].text)")
+
         let position: CGPoint = sender.convert(.zero, to: self.kanjiReadingTableView)
+        
         if let _ = kanjiReadingTableView.indexPathForRow(at: position) {
-            if testItems[cellIndex].correctAnswer?.text == testItems[cellIndex].possibleAnswers[index - 1].text {
-                print("correct answer")
+            if testItems[cellIndex].correctAnswer?.text == testItems[cellIndex].multipleChoiceAnswers[index - 1].text {
+                print("This is the correct answer!")
             } else {
-                print("not correct answer")
+                print("This is incorrect.")
             }
         }
     }
+    
+    
+    
+    
 }
