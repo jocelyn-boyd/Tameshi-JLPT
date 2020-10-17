@@ -75,7 +75,7 @@ class KanjiReadingViewController: UIViewController {
 }
 
 
-//MARK: UITableViewDataSource
+//MARK: UITableViewDataSource Extension Protocol
 extension KanjiReadingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return testItems.count + 1
@@ -120,7 +120,7 @@ extension KanjiReadingViewController: UITableViewDataSource {
 }
 
 
-//MARK: UITableViewDelegate
+//MARK: UITableViewDelegate Extension Protocol
 extension KanjiReadingViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Note: Sticky Header
@@ -149,18 +149,9 @@ extension KanjiReadingViewController: UITableViewDelegate {
 extension KanjiReadingViewController: KanjiReadingCellDelegate {
     //Note: Find out which question the user is on, so their answer can be correctly checked
     func didPushButton(sender: UIButton, at index: Int, for cellIndex: Int) {
-        
         let position: CGPoint = sender.convert(.zero, to: self.kanjiReadingTableView)
-        
-        print(sender.tag)
-        //    print(testItems[index])
-        //    print(cellIndex)
-        print(index)
-        if let indexPath = kanjiReadingTableView.indexPathForRow(at: position) {
-            print(position)
-            
-            if testItems[indexPath.row].correctAnswer?.text == testItems[cellIndex].possibleAnswers[index].text {
-                //TODO: selected answer is correct OR incorrect
+        if let _ = kanjiReadingTableView.indexPathForRow(at: position) {
+            if testItems[cellIndex].correctAnswer?.text == testItems[cellIndex].possibleAnswers[index - 1].text {
                 print("correct answer")
             } else {
                 print("not correct answer")
@@ -168,5 +159,3 @@ extension KanjiReadingViewController: KanjiReadingCellDelegate {
         }
     }
 }
-
-

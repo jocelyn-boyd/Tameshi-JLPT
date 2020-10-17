@@ -29,7 +29,7 @@ class KanjiReadingCell: UITableViewCell {
   
   lazy var optionOneButton: UIButton = {
     let button = UIButton()
-    button.tag = 0
+    button.tag = 1
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
@@ -37,7 +37,7 @@ class KanjiReadingCell: UITableViewCell {
   
   lazy var optionTwoButton: UIButton = {
     let button = UIButton()
-    button.tag = 1
+    button.tag = 2
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
@@ -45,7 +45,7 @@ class KanjiReadingCell: UITableViewCell {
   
   lazy var optionThreeButton: UIButton = {
     let button = UIButton()
-    button.tag = 2
+    button.tag = 3
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
@@ -53,7 +53,7 @@ class KanjiReadingCell: UITableViewCell {
   
   lazy var optionFourButton: UIButton = {
     let button = UIButton()
-    button.tag = 3
+    button.tag = 4
     button.addTarget(self, action: #selector(handleButtonTap(_:)), for: .touchUpInside)
     Utilities.setButton(button)
     return button
