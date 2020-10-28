@@ -1,11 +1,10 @@
 # Tameshi-JLPT (Work in Progress)
 - Native iOS mobile app using UIKit and Swift 5 in Xcode 12.
 
-## About the title & Overview
-試し (read as "tameshi") is a Japanese word that means "trial; test". 
+## About the title
+試し (read as "tameshi") is a Japanese word that means "trial; test". The JLPT is short for Japanese Language Proficiency Test. It is held in Japan and abroad to evaluate and certify language proficiency of Japanese language learners. There are five levels N5 - N1 (beginner to advanced). 
 
-The JLPT is short for Japanese Language Proficiency Test. It is held in Japan and abroad to evaluate and certify language proficiency of Japanese language learners. There are five levels N5 - N1 (beginner to advanced). 
-
+## Overview
 There's an official print copy of the practice book sold in the US but it's not readily available. An abridged sample test is available on the official website but it’s slow and not compatible with mobile browsers, in addition the question bank for the abridged version is also static and doesn’t change. A full sample test is also available on the site but the sections are formatted in PDF and downloadable audio files only.
 
 ## The Goal of this Project
