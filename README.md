@@ -1,4 +1,5 @@
 # Tameshi-JLPT (Work in Progress)
+- Native iOS mobile app using UIKit and Swift 5 in Xcode 12.
 
 ## About the title
 試し (read as "tameshi") is a Japanese word that means "trial; test". 
@@ -23,9 +24,3 @@ The main feature of the app is to closely simulate a genuine test-taking experie
 
 ## Screenshots (more coming soon!)
 ![image](images/mondaiOne.png)
-
-## Programming Languages
-- Swift 5
-
-## Development Tools
-- XCode 11
