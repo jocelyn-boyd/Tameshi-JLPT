@@ -23,5 +23,5 @@ The main feature of the app is to closely simulate a genuine test-taking experie
 - keep track of best scores and recent scores
 - timed sessions
 
-## Screenshots (New Screen Layout coming soon!)
-![image](images/mondaiOne.png)
+## Screenshots (A preview of the new screen :])
+![image](images/NewMondaiOne.png)
