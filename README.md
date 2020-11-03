@@ -10,7 +10,10 @@ There's an official print copy of the practice book sold in the US but it's not 
 ## The Goal of this Project
 The main feature of the app is to closely simulate a genuine test-taking experience. The main objective of the app is to help the user to become familiar with the formatting of the test, as well as, a general self-assessment of their own skills to pinpoint any areas they’d like to strengthen.
 
-## WIP Features 
+## WIP Features
+- Refactoring the screen layout to something more user friendly and clean
+
+## Backlog Features
 - N5 Vocabulary Section, Section 1 out 4 - Kanji Reading Multiple Choice
 - Keep track of the state of the selected answer button
 - Check if the selected answer is correct or not
@@ -20,5 +23,5 @@ The main feature of the app is to closely simulate a genuine test-taking experie
 - keep track of best scores and recent scores
 - timed sessions
 
-## Screenshots (more coming soon!)
+## Screenshots (New Screen Layout coming soon!)
 ![image](images/mondaiOne.png)
